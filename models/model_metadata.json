@@ -1,29 +1,27 @@
 {
-  "modelo": "Random Forest",
-  "version": "1.0",
-  "fecha_entrenamiento": "2026-06-13",
+  "modelo": "Gradient Boosting",
+  "version": "2.0",
+  "fecha_entrenamiento": "2026-06-15",
   "sklearn_version": "1.9.0",
   "semilla": 42,
   "metrica_principal": "f1_score_macro",
-  "valor_metrica": 0.5025,
-  "accuracy": 0.5344,
-  "precision_macro": 0.5848,
-  "recall_macro": 0.4963,
-  "auc_macro_ovr": 0.6766,
-  "cv_f1_macro_mean": 0.4759,
-  "cv_f1_macro_std": 0.0138,
+  "valor_metrica": 0.514,
+  "accuracy": 0.5497,
+  "precision_macro": 0.5536,
+  "recall_macro": 0.5108,
+  "auc_macro_ovr": 0.7096,
+  "cv_f1_macro_mean": 0.4917,
+  "cv_f1_macro_std": 0.0106,
   "split": {
-    "train": "70%",
-    "test": "15% (ajuste)",
-    "validacion": "15% (holdout final)"
+    "train": "80%",
+    "test": "20% (holdout final)"
   },
-  "n_train": 3658,
-  "n_test_ajuste": 785,
-  "n_val_final": 784,
+  "n_train": 4181,
+  "n_test": 1046,
   "clases": {
     "1": "Baja (>=6 meses)",
     "2": "Media (1-3 meses)",
-    "3": "Alta (<=2 semanas)"
+    "3": "Alta (<1 mes)"
   },
   "variable_objetivo": "fragilidad_label",
   "n_features": 40,
@@ -69,5 +67,23 @@
     "region_Llano",
     "region_Pacífico"
   ],
-  "observaciones": "Pipeline con StandardScaler + Random Forest. Entrenado con semilla 42."
+  "classification_report": {
+    "1": {"precision": 0.588, "recall": 0.27, "f1-score": 0.37, "support": 233},
+    "2": {"precision": 0.525, "recall": 0.60, "f1-score": 0.56, "support": 412},
+    "3": {"precision": 0.593, "recall": 0.65, "f1-score": 0.62, "support": 401},
+    "macro avg": {"precision": 0.5536, "recall": 0.5108, "f1-score": 0.514, "support": 1046},
+    "accuracy": 0.5497
+  },
+  "observaciones": "Pipeline con StandardScaler + Gradient Boosting. Entrenado con semilla 42. Split estratificado 80/20. Se probaron 5 estrategias de balanceo de clases (ver seccion 3.8); el modelo base logro el mayor F1 macro global.",
+  "experimento_20_variables": {
+    "n_features": 20,
+    "f1_macro": 0.497,
+    "descripcion": "20 variables con mayor correlacion con la variable objetivo (seleccion alternativa)"
+  },
+  "comparacion_modelos": [
+    {"nombre": "Decision Tree",       "f1_macro": 0.442, "accuracy": 0.493},
+    {"nombre": "Logistic Regression", "f1_macro": 0.495, "accuracy": 0.532},
+    {"nombre": "Random Forest",       "f1_macro": 0.507, "accuracy": 0.544},
+    {"nombre": "Gradient Boosting",   "f1_macro": 0.514, "accuracy": 0.550}
+  ]
 }
