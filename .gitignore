@@ -15,3 +15,14 @@ Thumbs.db
 # IDEs
 .vscode/
 .idea/
+
+# Secretos y configuracion local
+.env
+*.env
+
+# Datos sensibles (el raw xlsx no se versiona si supera limite de GitHub)
+# data/raw/*.xlsx
+
+# Salidas temporales
+*.log
+tmp/
